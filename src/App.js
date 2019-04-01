@@ -17,6 +17,7 @@ class App extends Component {
     this.addToCart = this.addToCart.bind(this);
     this.navigate = this.navigate.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
+    this.editQuantity = this.editQuantity.bind(this);
   }
 
   componentDidMount() {
@@ -74,6 +75,14 @@ class App extends Component {
       });
     });
   }
+  editQuantity = (item, quantity) => {
+    // let { quantity } = this.state;
+    axios.put(`/api/products/${item}`, { quantity }).then(response => {
+      this.setState({
+        shoppingCart: response.data
+      });
+    });
+  };
 
   // (index) {
   //   let cartCopy = this.state.cart.slice();
@@ -116,6 +125,7 @@ class App extends Component {
             <Cart
               shoppingCart={this.state.shoppingCart}
               removeFromCart={this.removeFromCart}
+              editQuantity={this.editQuantity}
             />
           ) : (
             <StoreFront products={products} addToCart={this.addToCart} />

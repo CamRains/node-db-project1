@@ -31,6 +31,17 @@ module.exports = {
     // cartItems.push(newProduct);
     res.status(200).send(cartItems);
   },
+  updateCartQuantity: (req, res) => {
+    const { quantity } = req.body;
+
+    console.log(quantity);
+    let index = cartItems.findIndex(product => product.id === +req.params.id);
+    if (index !== -1) {
+      cartItems[index].quantity = quantity;
+    }
+    res.status(200).send(cartItems);
+  },
+
   deleteProducts: (req, res) => {
     console.log(req.params);
     //     let index = req.query.index

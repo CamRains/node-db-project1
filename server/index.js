@@ -6,7 +6,7 @@ app.use(bodyParser.json());
 
 app.get("/api/products", storeController.readProducts);
 app.post("/api/products", storeController.addToCart);
-// app.put("/api/products/:id", storeController.updateProducts);
+app.put("/api/products/:id", storeController.updateCartQuantity);
 app.delete("/api/products/:id", storeController.deleteProducts);
 
 const PORT = 4420;
