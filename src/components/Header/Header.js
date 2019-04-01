@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Header.css";
-import Logo from "./nockon.jpeg";
+import Logo from "./logo.jpeg";
 
 class Header extends Component {
   render() {
@@ -17,10 +17,15 @@ class Header extends Component {
 
           <div className="header-link-container">
             <ul className="header-links">
+              <input type="text" placeholder="Search My Beautiful Site" />
+              &nbsp; &nbsp;
               <button onClick={() => this.props.navigate("store")}>
                 STORE
               </button>
-              <button onClick={() => this.props.navigate("cart")}>Cart</button>
+              &nbsp; &nbsp;
+              <button onClick={() => this.props.navigate("shoppingCart")}>
+                CART
+              </button>
             </ul>
           </div>
         </div>

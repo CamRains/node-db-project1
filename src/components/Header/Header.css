@@ -1,0 +1,36 @@
+.header-container {
+  display: flex;
+  background: rgb(6, 6, 6);
+}
+.logo-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80vw;
+}
+.logo-image {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  height: 180px;
+  width: 450px;
+}
+
+.header-links {
+  display: flex;
+  justify-content: center;
+
+  margin: 30px;
+  width: 100%;
+  list-style: none;
+  padding: 10vh;
+
+  font-size: 30px;
+}
+.header-links button:hover {
+  color: lime;
+  background-color: black;
+}
+.header-links button {
+  color: black;
+  background-color: lime;
+}

@@ -6,11 +6,11 @@ import StoreFront from "./components/StoreFront/StoreFront";
 import "./App.css";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       products: [],
-      cart: [],
+      shoppingCart: [],
       showCart: false
     };
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -20,32 +20,72 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/products").then(response => {
+    axios
+      .get("/api/products")
+      .then(response => {
+        console.log("label--->", response);
+        this.setState({
+          products: response.data.products.products,
+          shoppingCart: response.data.cartItems
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  addToCart = product => {
+    const newProduct = {
+      id: product.id,
+      item: product.item,
+      image_path: product.image_path,
+      price: product.price,
+      quantity: 1
+    };
+    console.log(newProduct);
+    axios.post("/api/products", newProduct).then(response => {
+      this.setState({
+        shoppingCart: response.data
+      });
+    });
+  };
+
+  // (item, image_path, price) => {
+  //   axios.post("/api/products", { item, image_path, price }).then(response => {
+  //     console.log(response.data);
+  //     this.setState({
+  //       products: response.data,
+  //       item: "",
+  //       image_path: "",
+  //       price: ""
+  //       // updateItem: "",
+  //       // updateimage_path: "",
+  //       // updatePrice: ""
+  //     });
+  //   });
+  // };
+
+  removeFromCart(id) {
+    // console.log(product);
+    axios.delete(`/api/products/${id}`).then(response => {
       console.log(response);
       this.setState({
-        products: response.data
+        shoppingCart: response.data
       });
     });
   }
 
-  addToCart(item) {
-    // console.log(item);
-    this.setState({
-      cart: [...this.state.cart, item]
-    });
-  }
-
-  removeFromCart(index) {
-    let cartCopy = this.state.cart.slice();
-    cartCopy.splice(index, 1);
-    this.setState({
-      cart: cartCopy
-    });
-  }
+  // (index) {
+  //   let cartCopy = this.state.cart.slice();
+  //   cartCopy.splice(index, 1);
+  //   this.setState({
+  //     cart: cartCopy
+  //   });
+  // }
 
   navigate(location) {
     console.log(location);
-    if (location === "cart") {
+    if (location === "shoppingCart") {
       this.setState({
         showCart: true
       });
@@ -66,14 +106,17 @@ class App extends Component {
   // }
 
   render() {
-    console.log(this.state.cart);
-    const { products, cart, showCart } = this.state;
+    // console.log(this.state.shoppingCart);
+    const { products, showCart } = this.state;
     return (
       <div className="App">
         <Header navigate={this.navigate} />
         <div className="main-container">
           {showCart ? (
-            <Cart cart={cart} removeFromCart={this.removeFromCart} />
+            <Cart
+              shoppingCart={this.state.shoppingCart}
+              removeFromCart={this.removeFromCart}
+            />
           ) : (
             <StoreFront products={products} addToCart={this.addToCart} />
           )}
@@ -84,3 +127,5 @@ class App extends Component {
 }
 
 export default App;
+
+// cant map over an undefined object in cart not getting passed down info properly

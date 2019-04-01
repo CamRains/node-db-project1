@@ -3,18 +3,28 @@ import "./StoreFront.css";
 // import bob from "../../../server/data/media";
 
 class StoreFront extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
   render() {
-    console.log(this.props.products);
-
-    let productDisplay = this.props.products.map((element, index) => {
+    console.log("PROPS", this.props.products);
+    let productDisplay = this.props.products.map((product, index) => {
+      // console.log(element);
       return (
         <div className="products-container" key={index}>
-          <h2>{element.item}</h2>
-          <img src={element.image_path} alt=" cant display " />
-          <h2> {"$" + element.price} </h2>
-          <button onClick={() => this.props.addToCart(element)}>
-            Add To Cart
-          </button>
+          <img src={product.image_path} alt=" cant display " />
+          &nbsp;
+          <h2>{product.item}</h2>
+          &nbsp;
+          <h3> {"$" + product.price} </h3>
+          &nbsp;
+          <div className="storefront-butons">
+            <button onClick={() => this.props.addToCart(product)}>
+              Add To Cart
+              
+            </button>
+          </div>
+          &nbsp;
         </div>
       );
     });
