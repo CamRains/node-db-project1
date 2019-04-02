@@ -2,6 +2,12 @@
   display: flex;
   background: rgb(6, 6, 6);
 }
+
+.store_and_cart {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .logo-container {
   display: flex;
   justify-content: space-evenly;
@@ -9,23 +15,33 @@
 }
 .logo-image {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 5px;
+  left: 10px;
   height: 180px;
   width: 450px;
 }
 
+.total h1 {
+  display: flex;
+  justify-content: flex;
+  /* padding: 00px; */
+  margin-left: 460px;
+  font-size: 20px;
+}
+
 .header-links {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-
-  margin: 30px;
+  color: white;
+  margin: 20px;
   width: 100%;
   list-style: none;
-  padding: 10vh;
+  padding: 5vh;
 
   font-size: 30px;
 }
+
 .header-links button:hover {
   color: lime;
   background-color: black;

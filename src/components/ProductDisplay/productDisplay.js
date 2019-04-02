@@ -1,16 +1,13 @@
-// import React, { Component } from "react";
+import React from "react";
 
-// class productDisplay extends Component {
-//   render() {
-//     return (
-//       <div className="products-container" key={index}>
-//         <h2>{element.item}</h2>
-//         <img src={element.image_path} alt=" cant display " />
-//         <h2> {"$" + element.price} </h2>
-//       </div>
-//     );
-//   }
-// }
-// export default productDisplay;
+function productDisplay(props) {
+  return (
+    <div className="products-container">
+      <img src={props.image_path} alt=" cant display " />
+      <h2> {"$" + props.price} </h2>
+      <h2>{props.item}</h2>
+    </div>
+  );
+}
 
-// not quite so sure how to do this
+export default productDisplay;

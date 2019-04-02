@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Cart.css";
+import ProductDisplay from "../ProductDisplay/productDisplay";
 // import axios from "axios";
 
 class Cart extends Component {
@@ -15,48 +16,50 @@ class Cart extends Component {
     let CartDisplay = this.props.shoppingCart.map((product, index) => {
       return (
         <div className="cart-info" key={index}>
-          <br />
-          {/* <h4>{product.id}</h4>
-            <h4>{index}</h4> */}
-          <img src={product.image_path} alt=" cant display " />
-          <h2>{product.item}</h2>
-          <div className="products-container">
-            <h2> {"$" + product.price} </h2>
+          <ProductDisplay
+            item={product.item}
+            price={product.price}
+            image_path={product.image_path}
+          />
+          {/* <div className="products-container">
+             <img src={product.image_path} alt=" cant display " />
+             <h2>{product.item}</h2>
+             <h2> {"$" + product.price} </h2> */}
+          &nbsp;
+          <div className="quantity">
+            <button>Qty.</button>
             &nbsp;
-            <div className="quantity">
-              <button>Qty.</button>
-              &nbsp;
-              {product.quantity}
-              <select
-                onChange={event =>
-                  this.props.editQuantity(product.id, event.target.value)
-                }
-                type="number"
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-              </select>
-              &nbsp;
-            </div>
+            {product.quantity}
+            <select
+              onChange={event =>
+                this.props.editQuantity(product.id, event.target.value)
+              }
+              type="number"
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+            </select>
+            &nbsp;
           </div>
+          {/* </div> */}
           <div className="cart-button-container">
             <button
               className="cart-button"
@@ -75,7 +78,7 @@ class Cart extends Component {
         ) : (
           <div className="go-buy-something">
             &nbsp;
-            <h4> YOUR CART IS EMPTY PEASANT! </h4>
+            <h4> YOUR CART IS EMPTY ! </h4>
             &nbsp; &nbsp;
             <div>
               <img src="https://i.imgflip.com/20y2ag.jpg" alt="" />

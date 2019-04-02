@@ -44,11 +44,16 @@ class App extends Component {
       quantity: 1
     };
     console.log(newProduct);
-    axios.post("/api/products", newProduct).then(response => {
-      this.setState({
-        shoppingCart: response.data
+    axios
+      .post("/api/products", newProduct)
+      .then(response => {
+        this.setState({
+          shoppingCart: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
       });
-    });
   };
 
   // (item, image_path, price) => {
@@ -68,12 +73,17 @@ class App extends Component {
 
   removeFromCart(id) {
     // console.log(product);
-    axios.delete(`/api/products/${id}`).then(response => {
-      console.log(response);
-      this.setState({
-        shoppingCart: response.data
+    axios
+      .delete(`/api/products/${id}`)
+      .then(response => {
+        console.log(response);
+        this.setState({
+          shoppingCart: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
       });
-    });
   }
   editQuantity = (item, quantity) => {
     // let { quantity } = this.state;

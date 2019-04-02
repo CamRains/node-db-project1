@@ -1,14 +1,23 @@
 .storefront-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: space-around;
+  align-items: space-around;
+
   background-image: url("http://pluspng.com/img-png/diamond-plate-png-hd-black-diamondplate-industrial-image-png-1920.png");
   background-image: fixed;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 0 40px;
+  color: white;
+  /* padding: 0 40px; */
 }
 
 .products-container {
   color: whitesmoke;
+  margin: 30px;
 }
 .storefront-container button {
   height: 45px;
